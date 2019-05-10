@@ -31,7 +31,7 @@ router.post(
 			let user = await User.findOne({ email });
 
 			if (user) {
-				res.status(400).json({
+				return res.status(400).json({
 					errors : [
 						{ msg: 'User already exists' }
 					]
@@ -62,7 +62,6 @@ router.post(
 			await user.save();
 
 			// return jsonwebtoken
-
 			res.send('User registered');
 		} catch (err) {
 			console.error(err.message);
