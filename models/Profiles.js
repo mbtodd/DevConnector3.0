@@ -14,6 +14,10 @@ const ProfileSchema = new mongoose.Schema({
 	location       : {
 		type : String
 	},
+	status         : {
+		type     : String,
+		required : true
+	},
 	skills         : {
 		type     : [
 			String
@@ -85,5 +89,28 @@ const ProfileSchema = new mongoose.Schema({
 				type : String
 			}
 		}
-	]
+	],
+	social         : {
+		youtube   : {
+			type : String
+		},
+		twitter   : {
+			type : String
+		},
+		facebook  : {
+			type : String
+		},
+		linkedin  : {
+			type : String
+		},
+		instagram : {
+			type : String
+		}
+	},
+	date           : {
+		type    : Date,
+		default : Date.now
+	}
 });
+
+module.exports = Profile = mongoose.model('profile', ProfileSchema);
