@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.set('useFindAndModify', false);
+// set.mongoose('useFindAndModify: false');
 
 const UserSchema = new mongoose.Schema({
 	name     : {
