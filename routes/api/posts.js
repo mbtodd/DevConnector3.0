@@ -3,15 +3,13 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator/check');
 const auth = require('../../middleware/auth');
 
-// Model imports
-const Post = require('../../models/Posts');
+const Post = require('../../models/Post');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
-
-// @route GET api/Posts
-// @desc Test route
-// @access Public
-router.get(
+// @route POST api/posts
+// @desc Create a post
+// @access Private
+router.post(
 	'/',
 	[
 		auth,
@@ -28,12 +26,13 @@ router.get(
 		try {
 			const user = await User.findById(req.user.id).select('-password');
 
-			const newPost = {
+			const newPost = new Post({
 				text   : req.body.text,
 				name   : user.name,
 				avatar : user.avatar,
 				user   : req.user.id
-			};
+			});
+
 			const post = await newPost.save();
 
 			res.json(post);
